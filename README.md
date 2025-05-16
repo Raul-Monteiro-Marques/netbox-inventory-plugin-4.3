@@ -55,7 +55,7 @@ The idea is that an external system uses some assets stored in netbox_inventory,
 
 ## Compatibility
 
-This plugin requires netbox version 4.2 to work. Older versions of the plugin
+This plugin requires netbox version 4.3.0 or later. Older versions of the plugin
 support older netbox version as per table below:
 
 | NetBox Version | Plugin Version |
@@ -64,6 +64,14 @@ support older netbox version as per table below:
 |       4.0      |      2.0.x     |
 |       4.1      |  2.1.x,2.2.x   |
 |       4.2      |      2.3.x     |
+|       4.3      |      2.4.x     |
+
+### Requirements
+
+- Python 3.10 or later
+- PostgreSQL 14.0 or later
+- NetBox 4.3.0 or later
+- django-storages 1.14.0 or later
 
 ## Installing
 

@@ -11,7 +11,8 @@ class NetBoxInventoryConfig(PluginConfig):
     author = 'Matej Vadnjal'
     author_email = 'matej.vadnjal@arnes.si'
     base_url = 'inventory'
-    min_version = '4.2.1'
+    min_version = '4.3.0'
+    release_track = 'stable'
     default_settings = {
         'top_level_menu': True,
         'used_status_name': 'used',
