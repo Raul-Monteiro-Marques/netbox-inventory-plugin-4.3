@@ -11,7 +11,6 @@ from utilities.forms.fields import (
     CSVChoiceField,
     CSVModelChoiceField,
     DynamicModelChoiceField,
-    NullableBooleanField,
 )
 from utilities.forms.rendering import FieldSet
 from utilities.forms.widgets import DatePicker
@@ -58,7 +57,7 @@ class AssetBulkEditForm(NetBoxModelBulkEditForm):
         required=False,
         label='Device type',
     )
-    device = NullableBooleanField(
+    device = forms.BooleanField(
         required=False,
         label='Clear device',
         help_text='Set device to null'
@@ -68,7 +67,7 @@ class AssetBulkEditForm(NetBoxModelBulkEditForm):
         required=False,
         label='Module type',
     )
-    module = NullableBooleanField(
+    module = forms.BooleanField(
         required=False,
         label='Clear module',
         help_text='Set module to null'
@@ -78,7 +77,7 @@ class AssetBulkEditForm(NetBoxModelBulkEditForm):
         required=False,
         label='Rack type',
     )
-    rack = NullableBooleanField(
+    rack = forms.BooleanField(
         required=False,
         label='Clear rack',
         help_text='Set rack to null'
