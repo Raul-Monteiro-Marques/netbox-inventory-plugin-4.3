@@ -18,66 +18,66 @@ __all__ = (
 @strawberry_django.filter(models.Asset, lookups=True)
 class AssetFilter(BaseFilterMixin):
     # Filtros específicos para Asset
-    name = strawberry_django.filters.FilterField(lookups=True)
-    serial = strawberry_django.filters.FilterField(lookups=True)
-    asset_tag = strawberry_django.filters.FilterField(lookups=True)
-    status = strawberry_django.filters.FilterField(lookups=True)
+    name = strawberry.auto
+    serial = strawberry.auto
+    asset_tag = strawberry.auto
+    status = strawberry.auto
     
     # Filtros para relacionamentos
-    device_type = strawberry_django.filters.FilterField(lookups=True)
-    module_type = strawberry_django.filters.FilterField(lookups=True)
-    inventoryitem_type = strawberry_django.filters.FilterField(lookups=True)
-    rack_type = strawberry_django.filters.FilterField(lookups=True)
-    tenant = strawberry_django.filters.FilterField(lookups=True)
-    device = strawberry_django.filters.FilterField(lookups=True)
-    module = strawberry_django.filters.FilterField(lookups=True)
-    contact = strawberry_django.filters.FilterField(lookups=True)
-    inventoryitem = strawberry_django.filters.FilterField(lookups=True)
-    rack = strawberry_django.filters.FilterField(lookups=True)
-    storage_location = strawberry_django.filters.FilterField(lookups=True)
-    owner = strawberry_django.filters.FilterField(lookups=True)
-    delivery = strawberry_django.filters.FilterField(lookups=True)
-    purchase = strawberry_django.filters.FilterField(lookups=True)
+    device_type = strawberry.auto
+    module_type = strawberry.auto
+    inventoryitem_type = strawberry.auto
+    rack_type = strawberry.auto
+    tenant = strawberry.auto
+    device = strawberry.auto
+    module = strawberry.auto
+    contact = strawberry.auto
+    inventoryitem = strawberry.auto
+    rack = strawberry.auto
+    storage_location = strawberry.auto
+    owner = strawberry.auto
+    delivery = strawberry.auto
+    purchase = strawberry.auto
 
 
 @strawberry_django.filter(models.Supplier, lookups=True)
 class SupplierFilter(BaseFilterMixin):
-    name = strawberry_django.filters.FilterField(lookups=True)
-    slug = strawberry_django.filters.FilterField(lookups=True)
-    description = strawberry_django.filters.FilterField(lookups=True)
+    name = strawberry.auto
+    slug = strawberry.auto
+    description = strawberry.auto
 
 
 @strawberry_django.filter(models.Purchase, lookups=True)
 class PurchaseFilter(BaseFilterMixin):
-    name = strawberry_django.filters.FilterField(lookups=True)
-    status = strawberry_django.filters.FilterField(lookups=True)
-    date = strawberry_django.filters.FilterField(lookups=True)
-    description = strawberry_django.filters.FilterField(lookups=True)
-    supplier = strawberry_django.filters.FilterField(lookups=True)
+    name = strawberry.auto
+    status = strawberry.auto
+    date = strawberry.auto
+    description = strawberry.auto
+    supplier = strawberry.auto
 
 
 @strawberry_django.filter(models.Delivery, lookups=True)
 class DeliveryFilter(BaseFilterMixin):
-    name = strawberry_django.filters.FilterField(lookups=True)
-    date = strawberry_django.filters.FilterField(lookups=True)
-    description = strawberry_django.filters.FilterField(lookups=True)
-    purchase = strawberry_django.filters.FilterField(lookups=True)
-    receiving_contact = strawberry_django.filters.FilterField(lookups=True)
+    name = strawberry.auto
+    date = strawberry.auto
+    description = strawberry.auto
+    purchase = strawberry.auto
+    receiving_contact = strawberry.auto
 
 
 @strawberry_django.filter(models.InventoryItemType, lookups=True)
 class InventoryItemTypeFilter(BaseFilterMixin):
-    model = strawberry_django.filters.FilterField(lookups=True)
-    slug = strawberry_django.filters.FilterField(lookups=True)
-    part_number = strawberry_django.filters.FilterField(lookups=True)
-    description = strawberry_django.filters.FilterField(lookups=True)
-    manufacturer = strawberry_django.filters.FilterField(lookups=True)
-    inventoryitem_group = strawberry_django.filters.FilterField(lookups=True)
+    model = strawberry.auto
+    slug = strawberry.auto
+    part_number = strawberry.auto
+    description = strawberry.auto
+    manufacturer = strawberry.auto
+    inventoryitem_group = strawberry.auto
 
 
 @strawberry_django.filter(models.InventoryItemGroup, lookups=True)
 class InventoryItemGroupFilter(BaseFilterMixin):
-    name = strawberry_django.filters.FilterField(lookups=True)
-    slug = strawberry_django.filters.FilterField(lookups=True)
-    description = strawberry_django.filters.FilterField(lookups=True)
-    parent = strawberry_django.filters.FilterField(lookups=True)
+    name = strawberry.auto
+    slug = strawberry.auto
+    description = strawberry.auto
+    parent = strawberry.auto
