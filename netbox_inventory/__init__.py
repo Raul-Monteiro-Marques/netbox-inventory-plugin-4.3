@@ -84,7 +84,7 @@ class NetBoxInventoryConfig(PluginConfig):
         return errors
 
 
-config = NetBoxInventoryConfig
+config = NetBoxInventoryConfig()
 
 
 @receiver(post_migrate)
