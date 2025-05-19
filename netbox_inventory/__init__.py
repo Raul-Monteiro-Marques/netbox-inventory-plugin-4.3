@@ -3,6 +3,7 @@ from importlib import metadata
 from django.db.models.signals import post_migrate
 from django.dispatch import receiver
 from netbox.plugins import PluginConfig
+from packaging import version
 
 from .version import __version__
 
@@ -53,8 +54,34 @@ class NetBoxInventoryConfig(PluginConfig):
         from . import signals  # noqa: F401
         
     def validate(self, data):
-        # Add any custom validation logic here if needed
-        return []
+        # Validate plugin settings
+        errors = []
+        
+        # Check if any required settings are missing
+        for setting in self.required_settings:
+            if setting not in data:
+                errors.append(
+                    f"Required setting '{setting}' is missing."
+                )
+        
+        # Check if NetBox version is compatible
+        try:
+            import netbox.version
+            current_version = version.parse(netbox.version.VERSION)
+            min_version = version.parse(self.min_version)
+            max_version = version.parse(self.max_version)
+            
+            if current_version < min_version or current_version > max_version:
+                errors.append(
+                    f"NetBox version {netbox.version.VERSION} is not compatible with this plugin. "
+                    f"This plugin requires NetBox version {self.min_version} to {self.max_version}."
+                )
+        except (ImportError, AttributeError):
+            errors.append(
+                "Unable to determine NetBox version."
+            )
+        
+        return errors
 
 
 config = NetBoxInventoryConfig
