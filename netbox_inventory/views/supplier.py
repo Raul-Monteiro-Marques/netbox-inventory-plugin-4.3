@@ -1,5 +1,4 @@
 from netbox.views import generic
-from tenancy.views import ObjectContactsView
 from utilities.query import count_related
 from utilities.views import register_model_view
 
@@ -13,7 +12,6 @@ __all__ = (
     'SupplierBulkImportView',
     'SupplierBulkEditView',
     'SupplierBulkDeleteView',
-    'SupplierContactsView',
 )
 
 
@@ -77,7 +75,5 @@ class SupplierBulkDeleteView(generic.BulkDeleteView):
     filterset = filtersets.SupplierFilterSet
     table = tables.SupplierTable
 
-
-@register_model_view(models.Supplier, 'contacts')
-class SupplierContactsView(ObjectContactsView):
-    queryset = models.Supplier.objects.all()
+# Contatos são agora implementados como uma aba ViewTab no NetBox 4.3
+# A classe ObjectContactsView não é mais necessária
