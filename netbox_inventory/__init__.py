@@ -2,6 +2,7 @@ from importlib import metadata
 
 from django.db.models.signals import post_migrate
 from django.dispatch import receiver
+from netbox.plugins import PluginConfig
 
 from .version import __version__
 
@@ -10,7 +11,7 @@ __all__ = (
 )
 
 
-class NetBoxInventoryConfig:
+class NetBoxInventoryConfig(PluginConfig):
     """This is our custom plugin configuration."""
 
     name = 'netbox_inventory'
@@ -46,6 +47,14 @@ class NetBoxInventoryConfig:
         'prefill_asset_tag_create_inventoryitem': False,
     }
     caching_config = {}
+    
+    def ready(self):
+        super().ready()
+        from . import signals  # noqa: F401
+        
+    def validate(self, data):
+        # Add any custom validation logic here if needed
+        return []
 
 
 config = NetBoxInventoryConfig
