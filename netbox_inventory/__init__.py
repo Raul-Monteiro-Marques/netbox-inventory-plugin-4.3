@@ -53,12 +53,13 @@ class NetBoxInventoryConfig(PluginConfig):
         super().ready()
         from . import signals  # noqa: F401
         
-    def validate(self, data):
+    @classmethod
+    def validate(cls, data):
         # Validate plugin settings
         errors = []
         
         # Check if any required settings are missing
-        for setting in self.required_settings:
+        for setting in cls.required_settings:
             if setting not in data:
                 errors.append(
                     f"Required setting '{setting}' is missing."
@@ -68,13 +69,13 @@ class NetBoxInventoryConfig(PluginConfig):
         try:
             import netbox.version
             current_version = version.parse(netbox.version.VERSION)
-            min_version = version.parse(self.min_version)
-            max_version = version.parse(self.max_version)
+            min_version = version.parse(cls.min_version)
+            max_version = version.parse(cls.max_version)
             
             if current_version < min_version or current_version > max_version:
                 errors.append(
                     f"NetBox version {netbox.version.VERSION} is not compatible with this plugin. "
-                    f"This plugin requires NetBox version {self.min_version} to {self.max_version}."
+                    f"This plugin requires NetBox version {cls.min_version} to {cls.max_version}."
                 )
         except (ImportError, AttributeError):
             errors.append(
