@@ -121,7 +121,7 @@ class AssetBulkEditForm(NetBoxModelBulkEditForm):
         help_text=Asset._meta.get_field('contact').help_text,
         required=not Asset._meta.get_field('contact').blank,
         query_params={
-            'group_id': '$contact_group',
+            'groups': '$contact_group',
         },
     )
     storage_location = DynamicModelChoiceField(
@@ -650,7 +650,7 @@ class DeliveryBulkEditForm(NetBoxModelBulkEditForm):
         required=False,
         label='Receiving Contact',
         query_params={
-            'group_id': '$contact_group',
+            'groups': '$contact_group',
         },
     )
     description = forms.CharField(

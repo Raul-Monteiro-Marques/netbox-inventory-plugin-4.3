@@ -176,7 +176,7 @@ class AssetFilterForm(NetBoxModelFilterSetForm):
         required=False,
         null_option='None',
         query_params={
-            'group_id': '$contact_group_id',
+            'groups': '$contact_group_id',
         },
         label='Contact',
     )
@@ -330,7 +330,7 @@ class SupplierFilterForm(ContactModelFilterForm, NetBoxModelFilterSetForm):
         required=False,
         null_option='None',
         query_params={
-            'group_id': '$contact_group',
+            'groups': '$contact_group',
         },
         label='Contact',
     )
@@ -402,7 +402,7 @@ class DeliveryFilterForm(NetBoxModelFilterSetForm):
         queryset=Contact.objects.all(),
         required=False,
         query_params={
-            'group_id': '$contact_group_id',
+            'groups': '$contact_group_id',
         },
         label='Receiving contact',
     )

@@ -102,7 +102,7 @@ class AssetForm(NetBoxModelForm):
         help_text=Asset._meta.get_field('contact').help_text,
         required=not Asset._meta.get_field('contact').blank,
         query_params={
-            'group_id': '$contact_group',
+            'groups': '$contact_group',
         },
     )
     storage_site = DynamicModelChoiceField(
@@ -290,7 +290,7 @@ class DeliveryForm(NetBoxModelForm):
         required=False,
         help_text=Delivery._meta.get_field('receiving_contact').help_text,
         query_params={
-            'group_id': '$contact_group',
+            'groups': '$contact_group',
         },
     )
 
