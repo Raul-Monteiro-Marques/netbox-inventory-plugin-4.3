@@ -176,22 +176,34 @@ class AssetBulkEditView(generic.BulkEditView):
 
                     # Check if asset is protected from editing
                     for tag in intersection_of_tags:
-                        # TODO: Check if custom fields can be protected
+                        # Check if custom fields can be protected
                         protected_fields = set(protected_fields_by_tags[tag])
-
+                        
+                        # Get custom field names that might be in the form
+                        custom_field_names = {
+                            field_name for field_name in form.fields.keys() 
+                            if field_name.startswith('cf_')
+                        }
+                        
                         modified_fields = set(form.changed_data)
                         nullable = set(form.nullable_fields).intersection(
                             set(nullified_fields)
                         )
-
-                        if modified_fields.intersection(
-                            protected_fields
-                        ) or nullable.intersection(protected_fields):
+                        
+                        # Check if any protected custom fields are being modified
+                        protected_custom_fields = {
+                            field for field in custom_field_names
+                            if field.replace('cf_', '') in protected_fields
+                        }
+                        
+                        if (modified_fields.intersection(protected_fields) or 
+                            nullable.intersection(protected_fields) or
+                            modified_fields.intersection(protected_custom_fields)):
                             protected_assets.append(asset)
 
-                            fields = modified_fields.intersection(
-                                protected_fields
-                            ).union(nullable.intersection(protected_fields))
+                            fields = (modified_fields.intersection(protected_fields)
+                                     .union(nullable.intersection(protected_fields))
+                                     .union(modified_fields.intersection(protected_custom_fields)))
                             errors.append(
                                 'Cannot edit asset {} fields protected by tag {}: {}.'.format(
                                     asset,

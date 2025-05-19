@@ -11,6 +11,7 @@ from utilities.forms.fields import (
     CSVChoiceField,
     CSVModelChoiceField,
     DynamicModelChoiceField,
+    NullableBooleanField,
 )
 from utilities.forms.rendering import FieldSet
 from utilities.forms.widgets import DatePicker
@@ -57,30 +58,30 @@ class AssetBulkEditForm(NetBoxModelBulkEditForm):
         required=False,
         label='Device type',
     )
-    # FIXME figure out how to only show set null checkbox
-    device = forms.CharField(
-        disabled=True,
+    device = NullableBooleanField(
         required=False,
+        label='Clear device',
+        help_text='Set device to null'
     )
     module_type = DynamicModelChoiceField(
         queryset=ModuleType.objects.all(),
         required=False,
         label='Module type',
     )
-    # FIXME figure out how to only show set null checkbox
-    module = forms.CharField(
-        disabled=True,
+    module = NullableBooleanField(
         required=False,
+        label='Clear module',
+        help_text='Set module to null'
     )
     rack_type = DynamicModelChoiceField(
         queryset=RackType.objects.all(),
         required=False,
         label='Rack type',
     )
-    # FIXME figure out how to only show set null checkbox
-    rack = forms.CharField(
-        disabled=True,
+    rack = NullableBooleanField(
         required=False,
+        label='Clear rack',
+        help_text='Set rack to null'
     )
     owner = DynamicModelChoiceField(
         queryset=Tenant.objects.all(),
